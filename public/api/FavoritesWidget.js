@@ -1,12 +1,12 @@
 class FavoritesWidget {
-  constructor() {
-    this.favoritesTableBody = document.querySelector('table.table.addresses tbody');
-    this.addUserToFavoritesForm = document.getElementById('addUser');
-    this.favoritesMessageBox = document.getElementById('favoritesMessageBox');
+  constructor() {//создает объект
+    this.favoritesTableBody = document.querySelector('table.table.addresses tbody');//объект таблицы избранного
+    this.addUserToFavoritesForm = document.getElementById('addUser');//объект формы дл добавления пользователя в избранное
+    this.favoritesMessageBox = document.getElementById('favoritesMessageBox');//объект формы для добавления пользователя в избранное
     this.favoritesMessageBox.style.display = 'none';
 
-    this.addUserCallback = (f) => f;
-    this.removeUserCallback = (f) => f;
+    this.addUserCallback = (f) => f;//функция, которая будет выполняться при добавлении пользователя в избранное
+    this.removeUserCallback = (f) => f;//функция, которая будет запускаться при попытке удаления пользователя из избранного
 
     this.addUserToFavoritesForm.querySelector('.button')
       .addEventListener('click', () => {
@@ -22,7 +22,7 @@ class FavoritesWidget {
     });
   }
 
-  fillTable(data) {
+  fillTable(data) {//принимает объект и заполняет таблицу данными
     Object.keys(data).forEach((key) => {
       const element = data[key];
       this.favoritesTableBody.innerHTML += `
@@ -38,17 +38,17 @@ class FavoritesWidget {
     });
   }
 
-  clearTable() {
+  clearTable() {//очищает таблицу
     this.favoritesTableBody.innerHTML = '';
   }
 
-  getData() {
+  getData() {//метод получения данных из формы добавления пользователя
     const id = this.addUserToFavoritesForm.querySelector("[placeholder='ID']").value;
     const name = this.addUserToFavoritesForm.querySelector("[placeholder='Имя']").value;
     return { id, name };
   }
 
-  setMessage(isSuccess, message) {
+  setMessage(isSuccess, message) {//метод отображает сообщение (ошибку или успешность) в окне с информацией
     if (isSuccess) {
       this.favoritesMessageBox.className = 'ui message fluid success';
     } else {

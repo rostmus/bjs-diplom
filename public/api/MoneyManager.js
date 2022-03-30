@@ -1,22 +1,22 @@
 class MoneyManager {
-  constructor() {
-    this.addMoneyForm = document.getElementById('addMoney');
-    this.conversionMoneyForm = document.getElementById('conversionMoney');
-    this.sendMoneyForm = document.getElementById('sendMoney');
+  constructor() {//создает объект
+    this.addMoneyForm = document.getElementById('addMoney');//объект формы добавления денег
+    this.conversionMoneyForm = document.getElementById('conversionMoney');//объект формы конвертирования денег
+    this.sendMoneyForm = document.getElementById('sendMoney');//объект формы перевода денег
 
     this.addMoneyForm.querySelector('.button').addEventListener('click', this.addMoneyAction.bind(this));
     this.conversionMoneyForm.querySelector('.button').addEventListener('click', this.conversionMoneyAction.bind(this));
     this.sendMoneyForm.querySelector('.button').addEventListener('click', this.sendMoneyAction.bind(this));
 
-    this.errorMessageBlock = document.getElementById('moneyMessageBox');
+    this.errorMessageBlock = document.getElementById('moneyMessageBox');//объект окна вывода сообщения
     this.errorMessageBlock.style.display = 'none';
 
-    this.addMoneyCallback = (f) => f;
-    this.conversionMoneyCallback = (f) => f;
-    this.sendMoneyCallback = (f) => f;
+    this.addMoneyCallback = (f) => f;//действие, которое будет выполняться при добавлении денег
+    this.conversionMoneyCallback = (f) => f;//действие, которое будет выполняться при конвертировании денег
+    this.sendMoneyCallback = (f) => f;//действие, которое будет выполняться при переводе денег
   }
 
-  addMoneyAction() {
+  addMoneyAction() {//обработчик события отправки формы добавления денег
     const amount = this.addMoneyForm.querySelector('[placeholder="Сумма"]').value;
     const currency = this.addMoneyForm.getElementsByTagName('select')[0].value;
     this.addMoneyCallback({ currency, amount });
@@ -26,7 +26,7 @@ class MoneyManager {
     select.classList.add('default');
   }
 
-  conversionMoneyAction() {
+  conversionMoneyAction() {//обработчик события отправки формы конвертации денег
     const fromAmount = this.conversionMoneyForm.querySelector('[placeholder="Сумма"]').value;
     const fromCurrency = this.conversionMoneyForm.getElementsByTagName('select')[0].value;
     const targetCurrency = this.conversionMoneyForm.getElementsByTagName('select')[1].value;
@@ -39,7 +39,7 @@ class MoneyManager {
     selects[1].classList.add('default');
   }
 
-  sendMoneyAction() {
+  sendMoneyAction() {//обработчик события отправки формы перевода денег
     const amount = this.sendMoneyForm.querySelector('[placeholder="Сумма"]').value;
     const to = +this.sendMoneyForm.getElementsByTagName('select')[0].value;
     const currency = this.sendMoneyForm.getElementsByTagName('select')[1].value;
@@ -53,7 +53,7 @@ class MoneyManager {
     selects[1].classList.add('default');
   }
 
-  setMessage(isSuccess, message) {
+  setMessage(isSuccess, message) {//метод отображает сообщение (ошибку или успешность) в окне с информацией
     if (isSuccess) {
       this.errorMessageBlock.className = 'ui message fluid success';
     } else {
@@ -66,7 +66,7 @@ class MoneyManager {
   }
 
   // обновляет выпадающий список пользователей
-  updateUsersList(data) {
+  updateUsersList(data) {//обновляет выпадающий список пользователей
     const select = this.sendMoneyForm.querySelector('.ui.dropdown select');
     select.innerHTML = '<option value="">Выберите пользователя</option>';
     Object.keys(data).forEach((key) => {

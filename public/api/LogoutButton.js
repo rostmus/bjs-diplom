@@ -1,8 +1,8 @@
 
 class LogoutButton {
   constructor() {
-    [this.logoutBtn] = document.getElementsByClassName('logout');
-    this.action = (f) => f;
+    [this.logoutBtn] = document.getElementsByClassName('logout');//объект кнопки выхода
+    this.action = (f) => f;//действие, которое будет вызываться по клику и выполнять нужные действия
     this.logoutBtn.addEventListener('click', this.logoutClick.bind(this));
   }
 

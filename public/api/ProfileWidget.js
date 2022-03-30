@@ -1,6 +1,6 @@
 
 class ProfileWidget {
-  static showProfile(data) {
+  static showProfile(data) {//отображает данные пользователя
     const profileList = document.querySelector('.list');
     const profileID = profileList.querySelector('[data-user-id]');
     const profileName = profileList.querySelector('[data-user-name]');
